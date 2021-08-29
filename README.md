@@ -1,3 +1,9 @@
+## UIの動き
+
+* /public 認証なし
+* /login ログインページ
+* /private 認証ありページ
+
 ## 説明
 
 * Reactからusernameとpasswordを送付。username=hoge,password=passwordに固定されている（実際はDB等で認証）。
