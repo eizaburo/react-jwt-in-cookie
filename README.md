@@ -1,6 +1,6 @@
 ## UIの動き
 
-* /public 認証なし
+* / 認証なし（Home）
 * /login ログインページ
 * /private 認証ありページ
 
