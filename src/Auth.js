@@ -1,24 +1,26 @@
 import { Redirect } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
-import { Simulate } from "react-dom/test-utils";
+import { useHistory } from "react-router";
 import moment from "moment";
 
 const Auth = (props) => {
 
-
+    const history = useHistory();
     const [cookies] = useCookies();
 
+    useEffect(() => {
+        setInterval(() => {
+            const expires = cookies.expires;
+            const now = moment().format();
 
-    //Cookieからログイン状態を取得
-    const signedIn = cookies.signedIn;
-    const expires = cookies.expires;
-    const now = moment().format();
+            if (moment(expires).isBefore(moment(now))) {
+                history.push("/login");
+            }
+        }, 1000)
+    }, []);
 
-    if (moment(expires).isBefore(moment(now))) {
-        return <Redirect to="/login" />
-    }
-
+    let signedIn = cookies.signedIn;
 
     if (signedIn === "true") {
         return props.children;
