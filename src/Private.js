@@ -17,6 +17,10 @@ const Private = () => {
         alert(cookies.token);
     }
 
+    const onClickHome2 = () => {
+        history.push("/Home2");
+    }
+
     useEffect(() => {
         const content_api_url = "http://localhost:3001/private";
         const getPrivateContent = async () => {
@@ -40,6 +44,8 @@ const Private = () => {
             <p>{content}</p>
             <hr />
             <button onClick={getHttpOnlyCookie}>httpOnly Cookie取得</button>
+
+            <button onClick={onClickHome2}>HOME２へ</button>
         </>
     );
 }

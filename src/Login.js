@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
-
+import moment from "moment";
 const Login = () => {
 
     const idRef = useRef(null);
@@ -26,7 +26,9 @@ const Login = () => {
                 response.json()
                     .then((json) => {
                         if (json.message === "success.") {
-                            setCookie("signedIn", "true", { maxAge: 300 });
+                            setCookie("signedIn", "true", { maxAge: 60 });
+                            const time = moment().add(1, 'm').format();
+                            setCookie("expires", time, { maxAge: 60 });
                             history.push("/private");
                         } else {
                             alert(json.message);
