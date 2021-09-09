@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 const Action = () => {
 
 
-
+    let timer;
 
     //token update
     const refresh_api_url = "http://localhost:3001/refresh";
@@ -24,15 +24,17 @@ const Action = () => {
     }
 
     const mouseMove = (event) => {
-        //処理
+        clearTimeout(timer);
+        timer = setTimeout(refresh, 300);
+    }
+
+    const refresh = () => {
         if (Cookies.get('signedIn') === "true") {
             refreshTokenAndCookie();
             var in1Minutes = 1 / 1440;
             Cookies.set("signedIn", "true", { expires: in1Minutes })
         }
-
     }
-
 
     let mycanvas = document.getElementById('root');
     mycanvas.addEventListener('mousemove', mouseMove);
