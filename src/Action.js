@@ -2,27 +2,28 @@
 import Cookies from "js-cookie";
 
 const Action = () => {
+
+
+
+
+    //token update
+    const refresh_api_url = "http://localhost:3001/refresh";
+    const refreshTokenAndCookie = async () => {
+        const res = await fetch(refresh_api_url, {
+            method: "post",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: encodeURI(``),
+        });
+        const json = await res.json();
+        const message = json.message;
+        console.log(message);
+    }
+
     const mouseMove = (event) => {
-
-
-
-        //token update
-        const refresh_api_url = "http://localhost:3001/refresh";
-        const refreshTokenAndCookie = async () => {
-            const res = await fetch(refresh_api_url, {
-                method: "post",
-                mode: "cors",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-                body: encodeURI(``),
-            });
-            const json = await res.json();
-            const message = json.message;
-            console.log(message);
-        }
-
         //処理
         if (Cookies.get('signedIn') === "true") {
             refreshTokenAndCookie();
