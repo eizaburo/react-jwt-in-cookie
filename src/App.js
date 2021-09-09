@@ -1,4 +1,7 @@
+import { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+// import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
 
 import Home from "./Home";
 import Login from "./Login";
@@ -6,6 +9,15 @@ import Private from "./Private";
 import Auth from "./Auth";
 
 const App = () => {
+
+  // const [cookies, setCookie] = useCookies();
+
+  useEffect(() => {
+    window.addEventListener("beforeunload", () => {
+      // Cookies.set("signedIn", "false");
+    });
+  }, []);
+
   return (
     <>
       <BrowserRouter>
