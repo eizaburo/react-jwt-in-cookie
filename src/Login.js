@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
 
 const Login = () => {
 
@@ -8,7 +9,7 @@ const Login = () => {
     const pwRef = useRef(null);
 
     const history = useHistory();
-    const [cookies, setCookie] = useCookies();
+    // const [cookies, setCookie] = useCookies();
 
     const login = () => {
         // alert(`id=${idRef.current.value},pw=${pwRef.current.value}`);
@@ -26,7 +27,8 @@ const Login = () => {
                 response.json()
                     .then((json) => {
                         if (json.message === "success.") {
-                            setCookie("signedIn", "true", { maxAge: 300 });
+                            var in1Minutes = 1 / 1440;
+                            Cookies.set("signedIn", "true", { expires: in1Minutes })
                             history.push("/private");
                         } else {
                             alert(json.message);
