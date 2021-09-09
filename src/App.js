@@ -15,7 +15,7 @@ const App = () => {
   useEffect(() => {
     window.addEventListener("beforeunload", () => {
       // Cookies.set("signedIn", "false");
-      if (window.performance.navigation.type == 1) {
+      if (window.performance.getEntriesByType("navigation")[0].type === 1) {
         //reload（何もしない）
       } else {
         document.cookie = "signedIn=false";

@@ -6,8 +6,6 @@ import Cookies from "js-cookie";
 
 const Auth = (props) => {
 
-
-
     const history = useHistory();
 
     let interval = null;
@@ -15,10 +13,6 @@ const Auth = (props) => {
     const stop = () => {
         clearInterval(interval);
     }
-
-
-
-
 
     useEffect(() => {
         if (Cookies.get('signedIn') === "true") {
